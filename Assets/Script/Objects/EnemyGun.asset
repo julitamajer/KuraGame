@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786d9784d22b12a48a08d5392d7f4453, type: 3}
+  m_Name: EnemyGun
+  m_EditorClassIdentifier: 
+  type: 0
+  gunName: Enemy Gun
+  modelPrefab: {fileID: 5652228240270279089, guid: 7c326cec83973fd4392bc8f9ee5ae150,
+    type: 3}
+  spawnPoint: {x: 0, y: 0, z: 0}
+  spawnRotation: {x: 0, y: 0, z: 0}
+  shootConfiguration: {fileID: 11400000, guid: 8e788d0edeb45f14b93c79010e27ffb9, type: 2}
+  trailConfig: {fileID: 11400000, guid: 7c987dc557abfdd4fafc318b4712385d, type: 2}
