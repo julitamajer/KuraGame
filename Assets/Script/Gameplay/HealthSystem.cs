@@ -18,14 +18,14 @@ public class HealthSystem
     {
         health -= damageAmount;
         if (health < 0) health = 0;
-        if(OnHealthChanged != null) OnHealthChanged(this, EventArgs.Empty);
+        if (OnHealthChanged != null) OnHealthChanged(this, EventArgs.Empty);
         Debug.Log(health);
     }
 
-    public void Heath(int heathAmount)
+    public void Heal(int heathAmount)
     {
         health += heathAmount;
-        if(health > healthMax) health = healthMax;
+        if (health > healthMax) health = healthMax;
         if (OnHealthChanged != null) OnHealthChanged(this, EventArgs.Empty);
     }
 }

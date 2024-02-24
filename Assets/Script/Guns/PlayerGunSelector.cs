@@ -18,4 +18,10 @@ public class PlayerGunSelector : MonoBehaviour
         activeGun = gun;
         gun.Spawn(_gunParent, this);
     }
+
+    public void PickUpGun(GunSO gun, GunType type)
+    {
+        _gun = type;
+        activeGun = gun;
+    }
 }
