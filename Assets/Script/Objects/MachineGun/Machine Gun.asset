@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Machine Gun
   m_EditorClassIdentifier: 
   type: 1
-  gunName: Pistol
+  gunName: Machine Gun
   modelPrefab: {fileID: 5652228240270279089, guid: 0b7db309c0fba004f966f8009fa8144e,
     type: 3}
   spawnPoint: {x: -0.492, y: 0.08399999, z: 0.268}
   spawnRotation: {x: 0, y: 0, z: 0}
-  shootConfiguration: {fileID: 11400000, guid: c324458401ea5bb4db99eccd96c72992, type: 2}
-  trailConfig: {fileID: 11400000, guid: 51205d8b1857fb94a98a34043f0003ec, type: 2}
+  shootConfiguration: {fileID: 11400000, guid: b87009da4d98b994bae2c99ceaea4240, type: 2}
+  trailConfig: {fileID: 11400000, guid: 99e69992178d5ca49ae93945f3daf62f, type: 2}

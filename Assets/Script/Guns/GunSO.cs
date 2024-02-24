@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -40,7 +41,7 @@ public class GunSO : ScriptableObject
     {
         if (Time.time > shootConfiguration.fireRate + _lastShootTime)
         {
-            _lastShootTime = Time.time; // Update the time of the last shot
+            _lastShootTime = Time.time; 
 
             _shootSystem.Play();
             Vector3 shootDirection = _shootSystem.transform.forward +
@@ -67,6 +68,14 @@ public class GunSO : ScriptableObject
                     new RaycastHit()));
             }
         }
+    }
+
+    public void Despawn()
+    {
+        _model.SetActive(false);
+        Destroy(_model);
+        _trailPool.Clear();
+        _shootSystem = null;
     }
 
     private IEnumerator PlayTrail(Vector3 startPoint, Vector3 endPoint, RaycastHit hit)
@@ -129,5 +138,20 @@ public class GunSO : ScriptableObject
         trail.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
         return trail;
+    }
+
+    public object Clone()
+    {
+        GunSO copy = CreateInstance<GunSO>();
+
+        copy.type = this.type;
+        copy.gunName = this.gunName;
+        copy.modelPrefab = this.modelPrefab;
+        copy.spawnPoint = this.spawnPoint;
+        copy.spawnRotation = this.spawnRotation;
+        copy.shootConfiguration = this.shootConfiguration;
+        copy.trailConfig = this.trailConfig;
+
+        return copy;
     }
 }

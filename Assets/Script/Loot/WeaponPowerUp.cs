@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponPowerUp : MonoBehaviour
+public class WeaponPowerUp : PickableItems
 {
     [SerializeField] private List<GunSO> gunsSO = new List<GunSO>();
     private GunSO selectedGun;
-
-   // public delegate void OnPlayerPickUp();
-   //public static event OnPlayerPickUp onPlayerPickUp;
 
     private void Start()
     {
@@ -25,14 +22,10 @@ public class WeaponPowerUp : MonoBehaviour
         return gunsArray[randomIndex];
     }
 
-    private void OnTriggerEnter(Collider other)
+    public override void OnPickedUp(Collider other)
     {
-        if(other.TryGetComponent(out PlayerGunSelector gunSelector) && other.gameObject.CompareTag("Player"))
-        {
-            // onPlayerPickUp?.Invoke();
-
-            gunSelector.PickUpGun(selectedGun, selectedGun.type);
-            Destroy(gameObject);
-        }
+        PlayerGunSelector gunSelector = other.GetComponent<PlayerGunSelector>();
+        gunSelector.PickUpGun(selectedGun);
+        Destroy(gameObject);
     }
 }

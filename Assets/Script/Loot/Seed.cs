@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Seed : MonoBehaviour
+public class Seed : PickableItems
 {
-    // Start is called before the first frame update
-    void Start()
+    public delegate void OnPickedUpSeed();
+    public static event OnPickedUpSeed onPickedUpSeed;
+    public override void OnPickedUp(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        onPickedUpSeed?.Invoke();
+        Destroy(gameObject);
     }
 }

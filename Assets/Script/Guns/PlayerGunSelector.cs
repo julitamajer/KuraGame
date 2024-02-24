@@ -15,13 +15,28 @@ public class PlayerGunSelector : MonoBehaviour
     private void Start()
     {
         GunSO gun = _guns.Find(gun => gun.type == _gun);
-        activeGun = gun;
-        gun.Spawn(_gunParent, this);
+        SetupGun(gun);
+    }
+    private void SetupGun(GunSO gunSet)
+    {
+        activeGun = gunSet.Clone() as GunSO;
+        activeGun.Spawn(_gunParent, this);
     }
 
-    public void PickUpGun(GunSO gun, GunType type)
+    public void DespawnActiveGun()
     {
-        _gun = type;
-        activeGun = gun;
+        if (activeGun != null)
+        {
+            activeGun.Despawn();
+        }
+
+        DestroyImmediate(activeGun);
+    }
+
+    public void PickUpGun(GunSO gun)
+    {
+        DespawnActiveGun();
+        _gun = gun.type;
+        SetupGun(gun);
     }
 }
