@@ -13,22 +13,21 @@ public class BombDrop : ChicksPowerUpBehaviour
 
     private void Start()
     {
-        GameObject parent = GameObject.Find("Canvas");
-        Transform childTransform = parent.transform.Find("BombButton");
-        _buttonObj = childTransform.gameObject;
-        Debug.Log(_buttonObj.name);
+        _buttonObj = GameObject.Find("BombButton");
+
+        
 
         _button = _buttonObj.GetComponent<Button>();
         _button.onClick.AddListener(DropTheBomb);
 
 
-        _buttonObj.SetActive(true);
+        _buttonObj.GetComponent<Image>().enabled = true;
     }
 
     public void DropTheBomb()
     {
         GameObject newBomb = Instantiate(_bomPrefab, transform.position, Quaternion.identity);
-        _buttonObj.SetActive(false);
+        _buttonObj.GetComponent<Image>().enabled = false;
         Destroy(gameObject);
     }
 }

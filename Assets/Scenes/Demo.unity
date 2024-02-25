@@ -759,6 +759,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449467e7f9a036b4e9cb2dab46823c55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1108323131 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8041495707683131723, guid: 05b1136437ff0bd418440cabec108030,
+    type: 3}
+  m_PrefabInstance: {fileID: 6671483440267123549}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871263446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbad937ac1a91d44a1bd12f86fc7b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1826639365
 GameObject:
   m_ObjectHideFlags: 0
@@ -2914,7 +2926,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7542865691364419312}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -3321,7 +3333,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &3378195017796638070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3412,8 +3424,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -115, y: -46.4}
-  m_SizeDelta: {x: 200, y: 200}
+  m_AnchoredPosition: {x: -115, y: -42.2}
+  m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &3689127566474989667
 MonoBehaviour:
@@ -4188,7 +4200,7 @@ PrefabInstance:
     - target: {fileID: 8669046596513322190, guid: 7498868fae42fc344b8175522a9d5f42,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.4665337
+      value: -5.32
       objectReference: {fileID: 0}
     - target: {fileID: 8669046596513322190, guid: 7498868fae42fc344b8175522a9d5f42,
         type: 3}
@@ -4525,7 +4537,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &5762213774445663145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4881,7 +4893,7 @@ PrefabInstance:
     - target: {fileID: 6295493467917608151, guid: 962f4f1bd405650448c60b8fc7968ffb,
         type: 3}
       propertyPath: powerUpType
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6295493467917608151, guid: 962f4f1bd405650448c60b8fc7968ffb,
         type: 3}
@@ -4939,7 +4951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5969526822303554077
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5320,7 +5332,7 @@ PrefabInstance:
     - target: {fileID: 2537276554939024393, guid: 05b1136437ff0bd418440cabec108030,
         type: 3}
       propertyPath: gap
-      value: 70
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 2537276554939024393, guid: 05b1136437ff0bd418440cabec108030,
         type: 3}
@@ -5351,7 +5363,7 @@ PrefabInstance:
     - target: {fileID: 8041495707683131723, guid: 05b1136437ff0bd418440cabec108030,
         type: 3}
       propertyPath: _gun
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8041495707683131723, guid: 05b1136437ff0bd418440cabec108030,
         type: 3}
@@ -6381,6 +6393,11 @@ MonoBehaviour:
   - {fileID: 4645323175400431186}
   - {fileID: 3409373626867867767}
   - {fileID: 4999601334169318151}
+  gunsUI:
+  - {fileID: 8857809794728708197}
+  - {fileID: 946889720366472304}
+  - {fileID: 163184115857120079}
+  playerGunSelector: {fileID: 1108323131}
 --- !u!1 &8003064852021286931
 GameObject:
   m_ObjectHideFlags: 0

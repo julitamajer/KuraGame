@@ -121,6 +121,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _delay: 2
   _radius: 5
+  explosionEffect: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664,
+    type: 3}
 --- !u!54 &6576679451246436666
 Rigidbody:
   m_ObjectHideFlags: 0

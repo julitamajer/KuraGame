@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private GameObject bodyParent;
 
+    public delegate void OnPlayerDead(string text);
+    public static event OnPlayerDead onPlayerDead;
+
 
     private bool isWalking = false;
 
@@ -123,6 +126,22 @@ public class PlayerController : MonoBehaviour
             bodyPartList.RemoveAt(0);
             Destroy(bodyParent.transform.GetChild(0).gameObject);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Body"))
+        {
+            EndGame(); // Call a method to end the game
+        }
+    }
+
+    private void EndGame()
+    {
+        // Implement your game over logic here
+        Debug.Log("Game Over");
+        onPlayerDead?.Invoke("You stepped your chicks!");
+        // You can reset the game, show game over screen, or perform any other actions.
     }
 
     private void OnDisable()

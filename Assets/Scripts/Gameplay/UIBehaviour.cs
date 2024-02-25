@@ -24,7 +24,6 @@ public class UIBehaviour : MonoBehaviour
     private float elapsedTime = 0.0f;
     private float timeRemaining;
 
-
     //Win lose panels
 
     [SerializeField] private GameObject onEndGamePanel;
@@ -35,10 +34,17 @@ public class UIBehaviour : MonoBehaviour
     [SerializeField] private TextMeshProUGUI summarySeed;
     [SerializeField] private List<GameObject> starsObj = new List<GameObject>();
 
+    // guns
+
+    [SerializeField] private List<GameObject> gunsUI = new List<GameObject>();
+    [SerializeField] PlayerGunSelector playerGunSelector;
+    private GunType type;
+
     private void OnEnable()
     {
         Seed.onPickedUpSeed += AddSeeds;
         PlayerHP.onPlayerDead += PlayerDeath;
+        PlayerController.onPlayerDead += PlayerDeath;
         SetStartProperties.onPlayerWin += PlayerWin;
     }
 
@@ -47,6 +53,8 @@ public class UIBehaviour : MonoBehaviour
         slider.value = 100f;
         targetValue = 0f;
         startValue = slider.value;
+
+        type = playerGunSelector.activeGun.type;
 
         if (!isPauseMenuOn)
             StartCoroutine(DecreaseSliderValue());
@@ -58,6 +66,9 @@ public class UIBehaviour : MonoBehaviour
         {
             PlayerDeath("Time is over!");
         }
+
+        type = playerGunSelector.activeGun.type;
+        DisplayGuns();
     }
 
     public void PauseMenu()
@@ -168,6 +179,28 @@ public class UIBehaviour : MonoBehaviour
         }
     }
 
+    private void DisplayGuns()
+    {
+        switch (type)
+        {
+            case GunType.Glock:
+                gunsUI[0].SetActive(true);
+                gunsUI[1].SetActive(false);
+                gunsUI[2].SetActive(false);
+                break;
+            case GunType.MachineGun:
+                gunsUI[0].SetActive(false);
+                gunsUI[1].SetActive(true);
+                gunsUI[2].SetActive(false);
+                break;
+            case GunType.Shotgun:
+                gunsUI[0].SetActive(false);
+                gunsUI[1].SetActive(false);
+                gunsUI[2].SetActive(true);
+                break;
+        }
+    }
+
     public int CalculateStars()
     {
         int timeStars = 0;
@@ -184,10 +217,13 @@ public class UIBehaviour : MonoBehaviour
         return timeStars;
     }
 
+
+
     private void OnDisable()
     {
         Seed.onPickedUpSeed -= AddSeeds;
         PlayerHP.onPlayerDead -= PlayerDeath;
+        PlayerController.onPlayerDead -= PlayerDeath;
         SetStartProperties.onPlayerWin -= PlayerWin;
     }
 }
