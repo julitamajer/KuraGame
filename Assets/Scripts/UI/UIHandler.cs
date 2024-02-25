@@ -20,7 +20,8 @@ public class UIHandler : MonoBehaviour
     int clickedLevel;
     public Button panelButton;
     public GameObject[] stars = new GameObject[4];
-    
+
+
 
     void Awake() {
         CopyListOfLevel();
@@ -71,10 +72,10 @@ public class UIHandler : MonoBehaviour
 
     void DispleyLevelInfo(int number) {
         title.SetText(createdLevels[number].number);
-        time.SetText(createdLevels[number].time.ToString());
-        seeds.SetText(createdLevels[number].seeds.ToString());
+        time.SetText(PlayerPrefs.GetString("time"));
+        seeds.SetText(PlayerPrefs.GetString("seeds"));
 
-         switch(createdLevels[number].stars)
+         switch(PlayerPrefs.GetInt("starRate"))
         {
             case 1:
                 stars[0].SetActive(false);

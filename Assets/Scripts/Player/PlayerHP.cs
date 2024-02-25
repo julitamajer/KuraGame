@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PlayerHP : HealhtBehaviour
 {
+    public delegate void OnPlayerDead(string text);
+    public static event OnPlayerDead onPlayerDead;
+
     private void OnEnable()
     {
         Egg.onPickedEgg += AddHealth;
@@ -25,6 +28,7 @@ public class PlayerHP : HealhtBehaviour
     public override void Dead() 
     {
         Debug.Log("Dead " + name);
+        onPlayerDead?.Invoke("You are dead!");
     }
 
     private void OnDisable()

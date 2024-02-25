@@ -22,10 +22,24 @@ public class UIBehaviour : MonoBehaviour
     private float targetValue;
     private float startValue;
     private float elapsedTime = 0.0f;
+    private float timeRemaining;
+
+
+    //Win lose panels
+
+    [SerializeField] private GameObject onEndGamePanel;
+    [SerializeField] private TextMeshProUGUI textEndGame;
+
+    [SerializeField] private GameObject summaryPanel;
+    [SerializeField] private TextMeshProUGUI summaryTimeLeft;
+    [SerializeField] private TextMeshProUGUI summarySeed;
+    [SerializeField] private List<GameObject> starsObj = new List<GameObject>();
 
     private void OnEnable()
     {
         Seed.onPickedUpSeed += AddSeeds;
+        PlayerHP.onPlayerDead += PlayerDeath;
+        SetStartProperties.onPlayerWin += PlayerWin;
     }
 
     private void Start()
@@ -36,6 +50,14 @@ public class UIBehaviour : MonoBehaviour
 
         if (!isPauseMenuOn)
             StartCoroutine(DecreaseSliderValue());
+    }
+
+    private void Update()
+    {
+        if(slider.value <= 0f)
+        {
+            PlayerDeath("Time is over!");
+        }
     }
 
     public void PauseMenu()
@@ -54,7 +76,20 @@ public class UIBehaviour : MonoBehaviour
 
     public void LoadLevel()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Levels");
+    }
+
+    public void LoadMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Menu");
+    }
+
+    public void LoadAgain()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Demo");
     }
 
     private System.Collections.IEnumerator DecreaseSliderValue()
@@ -68,6 +103,47 @@ public class UIBehaviour : MonoBehaviour
             yield return null;
         }
         slider.value = targetValue;
+    }
+
+    private void PlayerDeath(string text)
+    {
+        onEndGamePanel.SetActive(true);
+        Time.timeScale = 0;
+        textEndGame.SetText(text);
+    }
+
+    private void PlayerWin()
+    {
+        timeRemaining = duration - elapsedTime;
+        summaryPanel.SetActive(true);
+        Time.timeScale = 0;
+        summarySeed.SetText(_seedCount.ToString("0"));
+        summaryTimeLeft.SetText((duration - elapsedTime).ToString("0") + "s");
+
+        int stars = CalculateStars();
+
+        switch (stars)
+        {
+            case 0:
+                starsObj[0].SetActive(true);
+                PlayerPrefs.SetInt("starRate", stars);
+                break;
+            case 1:
+                starsObj[1].SetActive(true);
+                PlayerPrefs.SetInt("starRate", stars);
+                break;
+            case 2:
+                starsObj[2].SetActive(true);
+                PlayerPrefs.SetInt("starRate", stars);
+                break;
+            case 3:
+                starsObj[3].SetActive(true);
+                PlayerPrefs.SetInt("starRate", stars);
+                break;
+        }
+
+        PlayerPrefs.SetString("seeds", _seedCount.ToString("0"));
+        PlayerPrefs.SetString("time", (duration - elapsedTime).ToString("0") + "s");
     }
 
     private void AddSeeds()
@@ -92,8 +168,26 @@ public class UIBehaviour : MonoBehaviour
         }
     }
 
+    public int CalculateStars()
+    {
+        int timeStars = 0;
+        if (timeRemaining > 90)
+            timeStars = 3;
+        else if (timeRemaining >= 60 && timeRemaining <= 90)
+            timeStars = 2;
+        else if (timeRemaining >= 30 && timeRemaining < 60)
+            timeStars = 1;
+        else if (timeRemaining < 30)
+            timeStars = 0;
+
+
+        return timeStars;
+    }
+
     private void OnDisable()
     {
         Seed.onPickedUpSeed -= AddSeeds;
+        PlayerHP.onPlayerDead -= PlayerDeath;
+        SetStartProperties.onPlayerWin -= PlayerWin;
     }
 }
