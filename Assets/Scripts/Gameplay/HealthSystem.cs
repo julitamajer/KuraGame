@@ -8,9 +8,10 @@ public class HealthSystem
     public int health;
     private int healthMax;
 
-    public HealthSystem(int healthMax)
+    public HealthSystem(int healthMax, int health)
     {
         this.healthMax = healthMax;
+        this.health = health;
         health = healthMax;
     }
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.Pool;
+using static GunSO;
 
 [CreateAssetMenu(fileName = "Gun", menuName = "Guns/Gun",order = 0)]
 public class GunSO : ScriptableObject
@@ -24,6 +25,10 @@ public class GunSO : ScriptableObject
     private float _lastShootTime = 0f;
     private ParticleSystem _shootSystem;
     private ObjectPool<TrailRenderer> _trailPool;
+    private int _countShots;
+
+    public delegate void OnMaxHealthDecrease();
+    public static event OnMaxHealthDecrease onMaxHealthDecrease;
 
     public void Spawn(Transform parent, MonoBehaviour monoBehaviour)
     {
@@ -117,6 +122,14 @@ public class GunSO : ScriptableObject
                 {
                     hit.collider.GetComponent<PlayerHP>().TakeDamage(1);
                     Debug.Log(hit.collider.name);
+
+                    _countShots++;
+
+                    if (_countShots == 3)
+                    {
+                        onMaxHealthDecrease?.Invoke();
+                        _countShots = 0;
+                    }
 
                 }
             }

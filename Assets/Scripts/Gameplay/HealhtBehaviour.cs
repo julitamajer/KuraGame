@@ -6,12 +6,13 @@ using UnityEngine;
 public class HealhtBehaviour : MonoBehaviour
 {
     public int maxHealth = 3;
+    public int health = 3;
     public HealthSystem healthSystem;
     public bool immunity;
 
     private void Start()
     {
-        healthSystem = new HealthSystem(maxHealth);
+        healthSystem = new HealthSystem(maxHealth, health);
         healthSystem.OnHealthChanged += HealthSystem_OnHealthChanged;
     }
 
