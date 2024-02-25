@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 7159308623635789034, guid: ac2e7e886c2af7c4bb68153b8b6018eb, type: 3}
   durationTime: 15
-  rotationSpeed: 15
+  rotationSpeed: 40
