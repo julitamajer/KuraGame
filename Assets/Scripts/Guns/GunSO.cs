@@ -13,6 +13,8 @@ public class GunSO : ScriptableObject
     public GameObject modelPrefab;
     public Vector3 spawnPoint;
     public Vector3 spawnRotation;
+    public int enemyDamage;
+    public bool immunity;
 
     public ShootConfigurationSO shootConfiguration;
     public TrailConfigSO trailConfig;
@@ -104,16 +106,19 @@ public class GunSO : ScriptableObject
         {
             if(hit.collider.GetComponent<EnemyHP>()) 
             {
-                hit.collider.GetComponent<EnemyHP>().TakeDamage(1);
+                hit.collider.GetComponent<EnemyHP>().TakeDamage(enemyDamage);
                 Debug.Log(hit.collider.name);
 
             }
 
-            if (hit.collider.GetComponent<PlayerHP>())
+            if(!immunity)
             {
-                hit.collider.GetComponent<PlayerHP>().TakeDamage(1);
-                Debug.Log(hit.collider.name);
+                if (hit.collider.GetComponent<PlayerHP>())
+                {
+                    hit.collider.GetComponent<PlayerHP>().TakeDamage(1);
+                    Debug.Log(hit.collider.name);
 
+                }
             }
         }
 

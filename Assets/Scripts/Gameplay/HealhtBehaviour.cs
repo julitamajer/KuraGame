@@ -7,6 +7,7 @@ public class HealhtBehaviour : MonoBehaviour
 {
     public int maxHealth = 3;
     public HealthSystem healthSystem;
+    public bool immunity;
 
     private void Start()
     {
@@ -22,7 +23,10 @@ public class HealhtBehaviour : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
-        healthSystem.Damage(damageAmount);
+        if (!immunity)
+        {
+            healthSystem.Damage(damageAmount);
+        }
     }
 
     public void Heal(int healAmount)

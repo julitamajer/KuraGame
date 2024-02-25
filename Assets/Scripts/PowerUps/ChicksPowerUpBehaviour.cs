@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChicksPowerUpBehaviour : MonoBehaviour
 {
-    [SerializeField] ChicksPowerUp chicksPowerUp;
+    [SerializeField] private ChicksPowerUp chicksPowerUp;
 
     protected float durationTime;
     private float rotationSpeed;

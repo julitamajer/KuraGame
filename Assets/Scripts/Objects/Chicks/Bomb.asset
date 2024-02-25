@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a03f871809322d243aafa6e5477e82c1, type: 3}
-  m_Name: Speed
+  m_Name: Bomb
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7159308623635789034, guid: ac2e7e886c2af7c4bb68153b8b6018eb, type: 3}
-  durationTime: 15
+  prefab: {fileID: 7159308623635789034, guid: aa34a19c75d8af14e974c7b5b0002196, type: 3}
+  durationTime: 0
   rotationSpeed: 15

@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
             _characterController.Move(_direction * speed * Time.deltaTime);
         }
 
+
         Shoot();
     }
 

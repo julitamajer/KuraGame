@@ -9,11 +9,21 @@ public class CollectPowerUp : PickableItems
 
     public override void OnPickedUp(Collider other)
     {
+        Vector3 spawnPosition = transform.position + new Vector3(1.7f, 1.4f, 0);
+
         switch (powerUpType)
         {
             case PowerUpType.Speed:
-                Vector3 spawnPosition = transform.position + new Vector3(1.7f, 1.4f, 0);
                 Instantiate(_powerUps[0], spawnPosition, Quaternion.identity);
+                break;
+            case PowerUpType.Damage:
+                Instantiate(_powerUps[1], spawnPosition, Quaternion.identity);
+                break;
+            case PowerUpType.Bomb:
+                Instantiate(_powerUps[2], spawnPosition, Quaternion.identity);
+                break;
+            case PowerUpType.Protection:
+                Instantiate(_powerUps[3], spawnPosition, Quaternion.identity);
                 break;
         }
 
