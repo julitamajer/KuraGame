@@ -8,7 +8,7 @@ public class HealhtBehaviour : MonoBehaviour
     public int maxHealth = 3;
     public int health = 3;
     public HealthSystem healthSystem;
-    public bool immunity;
+    public bool immunity = false;
 
     private void Start()
     {

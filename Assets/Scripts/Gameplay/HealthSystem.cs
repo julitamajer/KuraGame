@@ -20,7 +20,7 @@ public class HealthSystem
         health -= damageAmount;
         if (health < 0) health = 0;
         if (OnHealthChanged != null) OnHealthChanged(this, EventArgs.Empty);
-        Debug.Log(health);
+
     }
 
     public void Heal(int heathAmount)

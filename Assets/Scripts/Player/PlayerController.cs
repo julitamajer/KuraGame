@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
+
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
@@ -102,11 +103,16 @@ public class PlayerController : MonoBehaviour
 
     public void Shoot()
     {
-        if(Mouse.current.leftButton.isPressed && _gunSelector.activeGun != null)
+        if ((Input.touchCount > 0 && Input.GetTouch(0).phase == UnityEngine.TouchPhase.Stationary) || (Mouse.current.leftButton.isPressed && _gunSelector.activeGun != null))
         {
-            _gunSelector.activeGun.Shoot();
+            if (_gunSelector.activeGun != null)
+            {
+                _gunSelector.activeGun.Shoot();
+            }
         }
     }
+
+
 
     public void DecreaseTail()
     {

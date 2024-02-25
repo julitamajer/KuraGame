@@ -7,6 +7,7 @@ public class EnemyHP : HealhtBehaviour
 {
     public delegate void OnEnemyDead();
     public static event OnEnemyDead onEnemyDead;
+    
 
     public override void Dead()
     {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -14,7 +15,7 @@ public class GunSO : ScriptableObject
     public GameObject modelPrefab;
     public Vector3 spawnPoint;
     public Vector3 spawnRotation;
-    public int enemyDamage;
+    public int enemyDamage = 1;
     public bool immunity;
 
     public ShootConfigurationSO shootConfiguration;
@@ -112,7 +113,8 @@ public class GunSO : ScriptableObject
             if(hit.collider.GetComponent<EnemyHP>()) 
             {
                 hit.collider.GetComponent<EnemyHP>().TakeDamage(enemyDamage);
-                Debug.Log(hit.collider.name);
+                UnityEngine.Debug.Log(hit.collider.name);
+                UnityEngine.Debug.Log(hit.collider.GetComponent<EnemyHP>().health);
 
             }
 
@@ -121,7 +123,7 @@ public class GunSO : ScriptableObject
                 if (hit.collider.GetComponent<PlayerHP>())
                 {
                     hit.collider.GetComponent<PlayerHP>().TakeDamage(1);
-                    Debug.Log(hit.collider.name);
+                    
 
                     _countShots++;
 

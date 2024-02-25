@@ -1,17 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using System;
-using UnityEngine.LowLevel;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class UIBehaviour : MonoBehaviour
+
+public class UIInGame : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI seeds;
-    private int _seedCount;
-
     //================PAUSE================
     [SerializeField] GameObject pauseMenu;
     bool isPauseMenuOn;
@@ -22,11 +17,6 @@ public class UIBehaviour : MonoBehaviour
     private float targetValue;
     private float startValue;
     private float elapsedTime = 0.0f;
-
-    private void OnEnable()
-    {
-        Seed.onPickedUpSeed += AddSeeds;
-    }
 
     private void Start()
     {
@@ -69,31 +59,5 @@ public class UIBehaviour : MonoBehaviour
         }
         slider.value = targetValue;
     }
-
-    private void AddSeeds()
-    {
-        _seedCount += 5;
-        seeds.SetText($"{_seedCount}");
-
-        switch (_seedCount)
-        {
-            case int count when _seedCount < 9:
-                seeds.SetText($"000{_seedCount}");
-                break;
-            case int count when _seedCount > 9 && _seedCount < 99:
-                seeds.SetText($"00{_seedCount}");
-                break;
-            case int count when _seedCount > 99 && _seedCount < 999:
-                seeds.SetText($"0{_seedCount}");
-                break;
-            case int count when _seedCount > 999:
-                seeds.SetText($"{_seedCount}");
-                break;
-        }
-    }
-
-    private void OnDisable()
-    {
-        Seed.onPickedUpSeed -= AddSeeds;
-    }
 }
+
