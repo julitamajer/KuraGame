@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float smoothTime = 0.05f;
     private float _currentVelocity;
 
-    [SerializeField] private float _speed;
+    public float speed;
 
     [SerializeField] private PlayerGunSelector _gunSelector;
 
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
             var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _currentVelocity, smoothTime);
             transform.rotation = Quaternion.Euler(0, angle, 0);
 
-            _characterController.Move(_direction * _speed * Time.deltaTime);
+            _characterController.Move(_direction * speed * Time.deltaTime);
         }
 
         Shoot();
