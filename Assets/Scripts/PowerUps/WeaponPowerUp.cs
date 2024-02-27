@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class WeaponPowerUp : PickableItems
 {
-    [SerializeField] private List<GunSO> gunsSO = new List<GunSO>();
+    [SerializeField] private List<GunSO> _gunsSO = new List<GunSO>();
     private GunSO selectedGun;
 
     private void Start()
     {
         selectedGun = RandomizeGun();
-        Debug.Log("Selected Gun: " + selectedGun.ToString());
     }
 
     private GunSO RandomizeGun()
     {
-        GunSO[] gunsArray = gunsSO.ToArray();
-
+        GunSO[] gunsArray = _gunsSO.ToArray();
         int randomIndex = Random.Range(0, gunsArray.Length);
 
         return gunsArray[randomIndex];

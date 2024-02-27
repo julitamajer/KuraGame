@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class ChicksPowerUpBehaviour : MonoBehaviour
 {
-    [SerializeField] private ChicksPowerUp chicksPowerUp;
+    [SerializeField] private ChicksPowerUp _chicksPowerUp;
 
     protected float durationTime;
-    private float rotationSpeed;
+    private float _rotationSpeed;
 
     private GameObject rotation;
 
@@ -17,12 +17,12 @@ public class ChicksPowerUpBehaviour : MonoBehaviour
         rotation = GameObject.Find("Rotation");
         transform.SetParent(rotation.transform);
 
-        durationTime = chicksPowerUp.durationTime;
-        rotationSpeed = chicksPowerUp.rotationSpeed;
+        durationTime = _chicksPowerUp.durationTime;
+        _rotationSpeed = _chicksPowerUp.rotationSpeed;
     }
 
     void Update()
     {
-        transform.Rotate(new Vector3(0, rotationSpeed, 0) * Time.deltaTime);
+        transform.Rotate(new Vector3(0, _rotationSpeed, 0) * Time.deltaTime);
     }
 }

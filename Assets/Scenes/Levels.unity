@@ -1522,11 +1522,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels: []
-  levelParent: {fileID: 1550463639}
+  _levelParent: {fileID: 1550463639}
+  _title: {fileID: 1739192449}
+  _time: {fileID: 650073105}
+  _seeds: {fileID: 1350202994}
   infoPanel: {fileID: 1502515941}
-  title: {fileID: 1739192449}
-  time: {fileID: 650073105}
-  seeds: {fileID: 1350202994}
   panelButton: {fileID: 791506711}
   stars:
   - {fileID: 1692654348}

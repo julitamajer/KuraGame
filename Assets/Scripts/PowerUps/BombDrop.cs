@@ -15,11 +15,8 @@ public class BombDrop : ChicksPowerUpBehaviour
     {
         _buttonObj = GameObject.Find("BombButton");
 
-        
-
         _button = _buttonObj.GetComponent<Button>();
         _button.onClick.AddListener(DropTheBomb);
-
 
         _buttonObj.GetComponent<Image>().enabled = true;
     }
@@ -27,6 +24,7 @@ public class BombDrop : ChicksPowerUpBehaviour
     public void DropTheBomb()
     {
         GameObject newBomb = Instantiate(_bomPrefab, transform.position, Quaternion.identity);
+
         _buttonObj.GetComponent<Image>().enabled = false;
         Destroy(gameObject);
     }

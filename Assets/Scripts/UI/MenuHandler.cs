@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject tutorialPanel;
+    [SerializeField] private GameObject _tutorialPanel;
 
     public void LoadLevel() {
         SceneManager.LoadScene("Levels");
@@ -13,12 +13,12 @@ public class MenuHandler : MonoBehaviour
 
     public void OpenTuto()
     {
-        tutorialPanel.SetActive(true);
+        _tutorialPanel.SetActive(true);
     }
 
     public void CloseTuto()
     {
-        tutorialPanel.SetActive(false);
+        _tutorialPanel.SetActive(false);
 
     }
 }

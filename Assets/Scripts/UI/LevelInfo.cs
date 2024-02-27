@@ -5,53 +5,56 @@ using UnityEngine.UI;
 
 public class LevelInfo : MonoBehaviour
 {
-    Transform parentTransform;
-    GameObject parentObject;
-    UIHandler uiHandler;
-    int childPosition;
+    [Header("Level info")]
+    [SerializeField] private int _number;
+    [SerializeField] private float _time;
+    [SerializeField] private int _stars;
+    [SerializeField] private int _seeds;
+    [SerializeField] private bool _passed;
+    [SerializeField] private bool _clicked;
 
-    //==================LEVEL INFO====================
+    private Transform _parentTransform;
+    private GameObject _parentObject;
+    private UIHandler _uiHandler;
+    private int _childPosition;
 
-    [SerializeField] int number;
-    [SerializeField] float time;
-    [SerializeField] int stars;
-    [SerializeField] int seeds;
-    [SerializeField] bool passed;
-    [SerializeField] bool clicked;
-
-    void Awake() {
-        parentTransform = transform.parent;
-        parentObject = parentTransform.gameObject;
-        uiHandler = parentObject.GetComponent<UIHandler>();
+    void Awake() 
+    {
+        _parentTransform = transform.parent;
+        _parentObject = _parentTransform.gameObject;
+        _uiHandler = _parentObject.GetComponent<UIHandler>();
     }
 
-    void Start() {
+    void Start() 
+    {
         CheckWhichChildObjectIs();
         CreateLevel();
     }
 
-    void CheckWhichChildObjectIs() {
-        
-        for (int i = 0; i < uiHandler.levels.Count; i++)
+    void CheckWhichChildObjectIs() 
+    { 
+        for (int i = 0; i < _uiHandler.levels.Count; i++)
         {
-            if (gameObject == uiHandler.levels[i].gameObject)
+            if (gameObject == _uiHandler.levels[i].gameObject)
             {
-                childPosition = i;
+                _childPosition = i;
                 break;
             }
         }
     }
 
-    public void ClickedButton() {
-        clicked = true;
-        uiHandler.createdLevels[childPosition].clicked = clicked;
+    public void ClickedButton() 
+    {
+        _clicked = true;
+        _uiHandler.createdLevels[_childPosition].clicked = _clicked;
     }
     
-    void CreateLevel() {
-        uiHandler.createdLevels[childPosition].number = $"Level {(childPosition+1).ToString()}";
-        uiHandler.createdLevels[childPosition].time = time;
-        uiHandler.createdLevels[childPosition].seeds = seeds;
-        uiHandler.createdLevels[childPosition].stars = stars;
-        uiHandler.createdLevels[childPosition].passed = passed;
+    void CreateLevel() 
+    {
+        _uiHandler.createdLevels[_childPosition].number = $"Level {(_childPosition+1).ToString()}";
+        _uiHandler.createdLevels[_childPosition]._time = _time;
+        _uiHandler.createdLevels[_childPosition]._seeds = _seeds;
+        _uiHandler.createdLevels[_childPosition].stars = _stars;
+        _uiHandler.createdLevels[_childPosition].passed = _passed;
     }
 }

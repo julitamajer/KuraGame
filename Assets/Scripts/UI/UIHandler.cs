@@ -7,44 +7,47 @@ using UnityEngine.SceneManagement;
 
 public class UIHandler : MonoBehaviour
 {
-    // ===============LEVELS==================
+    [Header("Levels")]
     public List<Transform> levels = new List<Transform>();
-    [SerializeField] GameObject levelParent;
+    [SerializeField] private GameObject _levelParent;
     public List<Level> createdLevels = new List<Level>();
 
-    // ===============PANEL==================
+    [Header("Panel")]
+    
+    [SerializeField] private TextMeshProUGUI _title;
+    [SerializeField] private TextMeshProUGUI _time;
+    [SerializeField] private TextMeshProUGUI _seeds;
+
     public GameObject infoPanel;
-    [SerializeField] TextMeshProUGUI title;
-    [SerializeField] TextMeshProUGUI time;
-    [SerializeField] TextMeshProUGUI seeds;
-    int clickedLevel;
+    private int clickedLevel;
     public Button panelButton;
     public GameObject[] stars = new GameObject[4];
 
-
-
-    void Awake() {
+    void Awake() 
+    {
         CopyListOfLevel();
         CreatedLevels();
     }
 
-
-    void Update() {
+    void Update() 
+    {
         CheckForClickedButton();
     }
 
-
-    void CreatedLevels() {
-        for(int i = 0; i<levels.Count; i++)
+    void CreatedLevels() 
+    {
+        for(int i = 0; i < levels.Count; i++)
         {
             Level levelToCreate = new Level();
+
             createdLevels.Add(levelToCreate);
             Debug.Log(createdLevels[i]);
         }
     }
 
-    void CopyListOfLevel() {
-        Transform transformLevels = levelParent.transform;
+    void CopyListOfLevel() 
+    {
+        Transform transformLevels = _levelParent.transform;
 
         foreach(Transform child in transformLevels){
             levels.Add(child);
@@ -52,8 +55,9 @@ public class UIHandler : MonoBehaviour
         }
     }
 
-    void CheckForClickedButton() {
-        for(int i = 0; i<levels.Count; i++)
+    void CheckForClickedButton() 
+    {
+        for(int i = 0; i < levels.Count; i++)
         {
             if(createdLevels[i].clicked)
             {
@@ -65,17 +69,18 @@ public class UIHandler : MonoBehaviour
             
             if(i == levels.Count)
             {
-                i=0;
+                i = 0;
             }
         }
     }
 
-    void DispleyLevelInfo(int number) {
-        title.SetText(createdLevels[number].number);
-        time.SetText(PlayerPrefs.GetString("time"));
-        seeds.SetText(PlayerPrefs.GetString("seeds"));
+    void DispleyLevelInfo(int number) 
+    {
+        _title.SetText(createdLevels[number].number);
+        _time.SetText(PlayerPrefs.GetString("time"));
+        _seeds.SetText(PlayerPrefs.GetString("seeds"));
 
-         switch(PlayerPrefs.GetInt("starRate"))
+        switch(PlayerPrefs.GetInt("starRate"))
         {
             case 1:
                 stars[0].SetActive(false);
@@ -104,20 +109,22 @@ public class UIHandler : MonoBehaviour
         }
     }
 
-    public void ExitPanel() {
+    public void ExitPanel() 
+    {
         createdLevels[clickedLevel].clicked = false;
         infoPanel.SetActive(false);
     }
 
-    public void LoadLevel() {
+    public void LoadLevel() 
+    {
         SceneManager.LoadScene("Demo");
     }
 }
 
 public class Level {
     public string number;
-    public float time;
-    public int seeds;
+    public float _time;
+    public int _seeds;
     public int stars;
     public bool passed;
     public bool clicked;

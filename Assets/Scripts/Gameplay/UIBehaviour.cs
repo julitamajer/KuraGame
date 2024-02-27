@@ -12,32 +12,30 @@ public class UIBehaviour : MonoBehaviour
     [SerializeField] private TextMeshProUGUI seeds;
     private int _seedCount;
 
-    //================PAUSE================
+    [Header("Pause")]
     [SerializeField] GameObject pauseMenu;
     bool isPauseMenuOn;
 
-    //================TIME================
+    [Header("Time")]
     public Slider slider;
     [SerializeField] float duration = 120.0f; //  minutes in seconds
-    private float targetValue;
-    private float startValue;
-    private float elapsedTime = 0.0f;
-    private float timeRemaining;
+    private float _targetValue;
+    private float _startValue;
+    private float _elapsedTime = 0.0f;
+    private float _timeRemaining;
 
-    //Win lose panels
+    [Header("End Game Panel")]
+    [SerializeField] private GameObject _onEndGamePanel;
+    [SerializeField] private TextMeshProUGUI _textEndGame;
 
-    [SerializeField] private GameObject onEndGamePanel;
-    [SerializeField] private TextMeshProUGUI textEndGame;
+    [SerializeField] private GameObject _summaryPanel;
+    [SerializeField] private TextMeshProUGUI _summaryTimeLeft;
+    [SerializeField] private TextMeshProUGUI _summarySeed;
+    [SerializeField] private List<GameObject> _starsObj = new List<GameObject>();
 
-    [SerializeField] private GameObject summaryPanel;
-    [SerializeField] private TextMeshProUGUI summaryTimeLeft;
-    [SerializeField] private TextMeshProUGUI summarySeed;
-    [SerializeField] private List<GameObject> starsObj = new List<GameObject>();
-
-    // guns
-
-    [SerializeField] private List<GameObject> gunsUI = new List<GameObject>();
-    [SerializeField] PlayerGunSelector playerGunSelector;
+    [Header("Guns")]
+    [SerializeField] private List<GameObject> _gunsUI = new List<GameObject>();
+    [SerializeField] private PlayerGunSelector _playerGunSelector;
     private GunType type;
 
     private void OnEnable()
@@ -51,10 +49,10 @@ public class UIBehaviour : MonoBehaviour
     private void Start()
     {
         slider.value = 100f;
-        targetValue = 0f;
-        startValue = slider.value;
+        _targetValue = 0f;
+        _startValue = slider.value;
 
-        type = playerGunSelector.activeGun.type;
+        type = _playerGunSelector.activeGun.type;
 
         if (!isPauseMenuOn)
             StartCoroutine(DecreaseSliderValue());
@@ -67,7 +65,7 @@ public class UIBehaviour : MonoBehaviour
             PlayerDeath("Time is over!");
         }
 
-        type = playerGunSelector.activeGun.type;
+        type = _playerGunSelector.activeGun.type;
         DisplayGuns();
     }
 
@@ -103,58 +101,59 @@ public class UIBehaviour : MonoBehaviour
         SceneManager.LoadScene("Demo");
     }
 
-    private System.Collections.IEnumerator DecreaseSliderValue()
+    private IEnumerator DecreaseSliderValue()
     {
-        while (elapsedTime < duration)
+        while (_elapsedTime < duration)
         {
-            float newValue = Mathf.Lerp(startValue, targetValue, elapsedTime / duration);
+            float newValue = Mathf.Lerp(_startValue, _targetValue, _elapsedTime / duration);
             slider.value = newValue;
-            elapsedTime += Time.deltaTime;
+            _elapsedTime += Time.deltaTime;
 
             yield return null;
         }
-        slider.value = targetValue;
+
+        slider.value = _targetValue;
     }
 
     private void PlayerDeath(string text)
     {
-        onEndGamePanel.SetActive(true);
+        _onEndGamePanel.SetActive(true);
         Time.timeScale = 0;
-        textEndGame.SetText(text);
+        _textEndGame.SetText(text);
     }
 
     private void PlayerWin()
     {
-        timeRemaining = duration - elapsedTime;
-        summaryPanel.SetActive(true);
+        _timeRemaining = duration - _elapsedTime;
+        _summaryPanel.SetActive(true);
         Time.timeScale = 0;
-        summarySeed.SetText(_seedCount.ToString("0"));
-        summaryTimeLeft.SetText((duration - elapsedTime).ToString("0") + "s");
+        _summarySeed.SetText(_seedCount.ToString("0"));
+        _summaryTimeLeft.SetText((duration - _elapsedTime).ToString("0") + "s");
 
         int stars = CalculateStars();
 
         switch (stars)
         {
             case 0:
-                starsObj[0].SetActive(true);
+                _starsObj[0].SetActive(true);
                 PlayerPrefs.SetInt("starRate", stars);
                 break;
             case 1:
-                starsObj[1].SetActive(true);
+                _starsObj[1].SetActive(true);
                 PlayerPrefs.SetInt("starRate", stars);
                 break;
             case 2:
-                starsObj[2].SetActive(true);
+                _starsObj[2].SetActive(true);
                 PlayerPrefs.SetInt("starRate", stars);
                 break;
             case 3:
-                starsObj[3].SetActive(true);
+                _starsObj[3].SetActive(true);
                 PlayerPrefs.SetInt("starRate", stars);
                 break;
         }
 
         PlayerPrefs.SetString("seeds", _seedCount.ToString("0"));
-        PlayerPrefs.SetString("time", (duration - elapsedTime).ToString("0") + "s");
+        PlayerPrefs.SetString("time", (duration - _elapsedTime).ToString("0") + "s");
     }
 
     private void AddSeeds()
@@ -184,19 +183,19 @@ public class UIBehaviour : MonoBehaviour
         switch (type)
         {
             case GunType.Glock:
-                gunsUI[0].SetActive(true);
-                gunsUI[1].SetActive(false);
-                gunsUI[2].SetActive(false);
+                _gunsUI[0].SetActive(true);
+                _gunsUI[1].SetActive(false);
+                _gunsUI[2].SetActive(false);
                 break;
             case GunType.MachineGun:
-                gunsUI[0].SetActive(false);
-                gunsUI[1].SetActive(true);
-                gunsUI[2].SetActive(false);
+                _gunsUI[0].SetActive(false);
+                _gunsUI[1].SetActive(true);
+                _gunsUI[2].SetActive(false);
                 break;
             case GunType.Shotgun:
-                gunsUI[0].SetActive(false);
-                gunsUI[1].SetActive(false);
-                gunsUI[2].SetActive(true);
+                _gunsUI[0].SetActive(false);
+                _gunsUI[1].SetActive(false);
+                _gunsUI[2].SetActive(true);
                 break;
         }
     }
@@ -204,20 +203,18 @@ public class UIBehaviour : MonoBehaviour
     public int CalculateStars()
     {
         int timeStars = 0;
-        if (timeRemaining > 90)
+        if (_timeRemaining > 90)
             timeStars = 3;
-        else if (timeRemaining >= 60 && timeRemaining <= 90)
+        else if (_timeRemaining >= 60 && _timeRemaining <= 90)
             timeStars = 2;
-        else if (timeRemaining >= 30 && timeRemaining < 60)
+        else if (_timeRemaining >= 30 && _timeRemaining < 60)
             timeStars = 1;
-        else if (timeRemaining < 30)
+        else if (_timeRemaining < 30)
             timeStars = 0;
 
 
         return timeStars;
     }
-
-
 
     private void OnDisable()
     {

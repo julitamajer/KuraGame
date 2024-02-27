@@ -22,7 +22,6 @@ public class Immunity : ChicksPowerUpBehaviour
         yield return new WaitForSeconds(durationTime);
 
         _playerHP.immunity = false;
-
         Destroy(gameObject);
 
         StopCoroutine(ImmunityOn());

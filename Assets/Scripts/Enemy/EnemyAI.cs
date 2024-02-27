@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour
 {
     private NavMeshAgent _agent;
     private Transform _player;
+
     [SerializeField] private LayerMask _whatIsGround, _whatIsPlayer;
     [SerializeField] private PlayerGunSelector _gunSelector;
 
@@ -49,7 +50,7 @@ public class EnemyAI : MonoBehaviour
 
         Vector3 distanceToWalkPoint = transform.position - _walkPoint;
 
-        if(distanceToWalkPoint.magnitude <1f)
+        if (distanceToWalkPoint.magnitude <1f)
             _walkPointSet = false;
     }
 
@@ -80,7 +81,6 @@ public class EnemyAI : MonoBehaviour
         {
             _gunSelector.activeGun.Shoot();
             
-
             _allreadyAttacked = true;
             Invoke(nameof(ResetAttack), _timeBetweenAttacks);
         }

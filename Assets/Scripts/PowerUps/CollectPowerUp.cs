@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class CollectPowerUp : PickableItems
 {
-    [SerializeField] PowerUpType powerUpType;
+    [SerializeField] private PowerUpType _powerUpType;
     [SerializeField] private List<GameObject> _powerUps = new List<GameObject>();
 
     public override void OnPickedUp(Collider other)
     {
         Vector3 spawnPosition = transform.position + new Vector3(1.7f, 1.4f, 0);
 
-        switch (powerUpType)
+        switch (_powerUpType)
         {
             case PowerUpType.Speed:
                 Instantiate(_powerUps[0], spawnPosition, Quaternion.identity);

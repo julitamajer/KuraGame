@@ -11,7 +11,7 @@ public class Bomb : MonoBehaviour
     private float _countdown;
     private bool _hasExploded;
 
-    [SerializeField] private GameObject explosionEffect; 
+    [SerializeField] private GameObject _explosionEffect; 
 
     private void Start()
     {
@@ -31,7 +31,7 @@ public class Bomb : MonoBehaviour
 
     private void Explode()
     {
-        GameObject boom = Instantiate(explosionEffect, transform.position, transform.rotation);
+        GameObject boom = Instantiate(_explosionEffect, transform.position, transform.rotation);
         boom.transform.SetParent(gameObject.transform);
         Collider[] colliders = Physics.OverlapSphere(transform.position, _radius);
 
@@ -43,7 +43,7 @@ public class Bomb : MonoBehaviour
             {
                 enemyHP.TakeDamage(3);
             }
-            StartCoroutine(DestroyAfterDelay(1)); // Destroy the bomb after the duration of the explosion effect
+            StartCoroutine(DestroyAfterDelay(1)); 
         }
     }
 

@@ -18,7 +18,6 @@ public class HealhtBehaviour : MonoBehaviour
 
     private void HealthSystem_OnHealthChanged(object sender, EventArgs e)
     {
-        // You can update UI elements or perform other actions based on the health change here
         CheckDead();
     }
 

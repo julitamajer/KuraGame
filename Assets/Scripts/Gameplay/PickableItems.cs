@@ -11,5 +11,6 @@ public abstract class PickableItems : MonoBehaviour
             OnPickedUp(other);
         }
     }
+
     public abstract void OnPickedUp(Collider other);
 }

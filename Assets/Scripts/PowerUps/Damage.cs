@@ -21,12 +21,9 @@ public class Damage : ChicksPowerUpBehaviour
     {
         _playerGunSelector.activeGun.enemyDamage += 2;
 
-        Debug.Log(_playerGunSelector.activeGun.enemyDamage);
-
         yield return new WaitForSeconds(durationTime);
 
         _playerGunSelector.activeGun.enemyDamage = _oldDamage;
-
         Destroy(gameObject);
 
         StopCoroutine(MoreDamage());

@@ -4,25 +4,24 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 public class UIInGame : MonoBehaviour
 {
-    //================PAUSE================
-    [SerializeField] GameObject pauseMenu;
+    [Header("Pause")]
+    [SerializeField] private GameObject _pauseMenu;
     bool isPauseMenuOn;
 
-    //================TIME================
+    [Header("Time")]
     public Slider slider;
-    [SerializeField] float duration = 120.0f; //  minutes in seconds
-    private float targetValue;
-    private float startValue;
-    private float elapsedTime = 0.0f;
+    [SerializeField] private float _duration = 120.0f; 
+    private float _targetValue;
+    private float _startValue;
+    private float _elapsedTime = 0.0f;
 
     private void Start()
     {
         slider.value = 100f;
-        targetValue = 0f;
-        startValue = slider.value;
+        _targetValue = 0f;
+        _startValue = slider.value;
 
         if (!isPauseMenuOn)
             StartCoroutine(DecreaseSliderValue());
@@ -30,14 +29,14 @@ public class UIInGame : MonoBehaviour
 
     public void PauseMenu()
     {
-        pauseMenu.SetActive(true);
+        _pauseMenu.SetActive(true);
         Time.timeScale = 0;
         isPauseMenuOn = true;
     }
 
     public void Resume()
     {
-        pauseMenu.SetActive(false);
+        _pauseMenu.SetActive(false);
         Time.timeScale = 1;
         isPauseMenuOn = false;
     }
@@ -47,17 +46,17 @@ public class UIInGame : MonoBehaviour
         SceneManager.LoadScene("Levels");
     }
 
-    private System.Collections.IEnumerator DecreaseSliderValue()
+    private IEnumerator DecreaseSliderValue()
     {
-        while (elapsedTime < duration)
+        while (_elapsedTime < _duration)
         {
-            float newValue = Mathf.Lerp(startValue, targetValue, elapsedTime / duration);
+            float newValue = Mathf.Lerp(_startValue, _targetValue, _elapsedTime / _duration);
             slider.value = newValue;
-            elapsedTime += Time.deltaTime;
+            _elapsedTime += Time.deltaTime;
 
             yield return null;
         }
-        slider.value = targetValue;
+        slider.value = _targetValue;
     }
 }
 

@@ -4,56 +4,68 @@ using UnityEngine;
 
 public class SetStartProperties : MonoBehaviour
 {
-    [SerializeField] GameObject player;
-    [SerializeField] GameObject doors;
-    [SerializeField] UIBehaviour uIBehaviour;
+    [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _eggsParent;
+    [SerializeField] private GameObject _doors;
+    [SerializeField] private UIBehaviour _uIBehaviour;
 
-    Vector3 doorsPosition;
-    bool doorsOnTrigger;
+    private Vector3 _doorsPosition;
+    private bool _doorsOnTrigger;
+    private bool _isParentEmpty;
 
     public delegate void OnPlayerWin();
     public static event OnPlayerWin onPlayerWin;
 
     void Awake()
     {
-        doorsPosition = doors.transform.position;
+        _doorsPosition = _doors.transform.position;
         Time.timeScale = 1;
     }
 
-    void Start() {
-        SetPlayerPosition();
+    void Start() 
+    {
+        Set_playerPosition();
     }
 
     void Update()
     {
+        Check_eggsParent();
         EndGame();
     }
 
-    void SetPlayerPosition() {
-        doorsPosition.x = 1f;
-        doorsPosition.y = 1f;
-        player.transform.position = doorsPosition;
+    void Set_playerPosition() 
+    {
+        _doorsPosition.x = 1f;
+        _doorsPosition.y = 1f;
+        _player.transform.position = _doorsPosition;
     }
 
-    void EndGame(){
-        if(uIBehaviour.slider.value <= 0.8f && doorsOnTrigger) {
+    void EndGame()
+    {
+        if (_isParentEmpty && _doorsOnTrigger) {
             onPlayerWin?.Invoke();
         }
     }
 
+    void Check_eggsParent()
+    {
+        _isParentEmpty = (_eggsParent.transform.childCount == 0);
+        Debug.Log("Is Eggs Parent Empty: " + _isParentEmpty);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("_player"))
         {
-            doorsOnTrigger = true;
+            _doorsOnTrigger = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("_player"))
         {
-            doorsOnTrigger = false;
+            _doorsOnTrigger = false;
         }
     }
 }
