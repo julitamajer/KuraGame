@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Doors
   - Body
+  - Seed
   layers:
   - Default
   - TransparentFX

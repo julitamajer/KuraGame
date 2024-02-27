@@ -18,7 +18,7 @@ public class UIBehaviour : MonoBehaviour
 
     [Header("Time")]
     public Slider slider;
-    [SerializeField] float duration = 120.0f; //  minutes in seconds
+    [SerializeField] float duration = 120.0f; 
     private float _targetValue;
     private float _startValue;
     private float _elapsedTime = 0.0f;
@@ -44,6 +44,7 @@ public class UIBehaviour : MonoBehaviour
         PlayerHP.onPlayerDead += PlayerDeath;
         PlayerController.onPlayerDead += PlayerDeath;
         SetStartProperties.onPlayerWin += PlayerWin;
+        Clock.onPickedUpClock += AddTime;
     }
 
     private void Start()
@@ -113,6 +114,12 @@ public class UIBehaviour : MonoBehaviour
         }
 
         slider.value = _targetValue;
+    }
+
+    private void AddTime(float addedTime)
+    {
+        slider.value += addedTime;
+        _elapsedTime -= addedTime; 
     }
 
     private void PlayerDeath(string text)
@@ -222,5 +229,6 @@ public class UIBehaviour : MonoBehaviour
         PlayerHP.onPlayerDead -= PlayerDeath;
         PlayerController.onPlayerDead -= PlayerDeath;
         SetStartProperties.onPlayerWin -= PlayerWin;
+        Clock.onPickedUpClock -= AddTime;
     }
 }

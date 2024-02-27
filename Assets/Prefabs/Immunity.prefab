@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb2fe5006e570354fa997501f1ca881f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chicksPowerUp: {fileID: 11400000, guid: a6f523dacf63b0f4ba37b604fdb85ecf, type: 2}
+  _chicksPowerUp: {fileID: 11400000, guid: a6f523dacf63b0f4ba37b604fdb85ecf, type: 2}
 --- !u!1001 &2805269070516884774
 PrefabInstance:
   m_ObjectHideFlags: 0

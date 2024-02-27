@@ -119,8 +119,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2483a3af5faf7948a774e0e1eeddd46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpType: 0
-  _powerUps: []
+  _powerUpType: 0
+  _powerUps:
+  - {fileID: 7159308623635789034, guid: ac2e7e886c2af7c4bb68153b8b6018eb, type: 3}
+  - {fileID: 7159308623635789034, guid: 66010cb762fd0f54c8afab3922518872, type: 3}
+  - {fileID: 7159308623635789034, guid: aa34a19c75d8af14e974c7b5b0002196, type: 3}
+  - {fileID: 7159308623635789034, guid: dde26ef9c61262746b7237b9af2a29d1, type: 3}
 --- !u!1001 &6724978454146530564
 PrefabInstance:
   m_ObjectHideFlags: 0

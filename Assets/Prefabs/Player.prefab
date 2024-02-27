@@ -219,14 +219,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449467e7f9a036b4e9cb2dab46823c55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothTime: 0.05
+  _smoothTime: 0.05
   speed: 0
+  _bodyPrefab: {fileID: 0}
+  _gap: 0
+  _bodySpeed: 5
+  _bodyParent: {fileID: 0}
   _gunSelector: {fileID: 8041495707683131723}
-  bodyPrefab: {fileID: 3052378879404065253, guid: 0ad99f422f849d94b86e3291b1a75869,
-    type: 3}
-  gap: 10
-  bodySpeed: 5
-  bodyParent: {fileID: 3869173563449161240}
 --- !u!143 &6418054831776283415
 CharacterController:
   m_ObjectHideFlags: 0
@@ -246,8 +245,8 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 1.2
+  m_Height: 2.52
+  m_Radius: 0.72
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08

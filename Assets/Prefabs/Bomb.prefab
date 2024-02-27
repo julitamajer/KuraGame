@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b935c4ffa983df489978af7529ac71a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chicksPowerUp: {fileID: 11400000, guid: 7f92cfd0996cf9148a893cec1e15ef0d, type: 2}
+  _chicksPowerUp: {fileID: 11400000, guid: 7f92cfd0996cf9148a893cec1e15ef0d, type: 2}
   _bomPrefab: {fileID: 896948007378685336, guid: b1828d0004f0ed34594178d98428dea9,
     type: 3}
   _buttonObj: {fileID: 0}

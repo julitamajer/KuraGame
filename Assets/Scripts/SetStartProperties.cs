@@ -55,7 +55,7 @@ public class SetStartProperties : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("_player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             _doorsOnTrigger = true;
         }
@@ -63,7 +63,7 @@ public class SetStartProperties : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("_player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             _doorsOnTrigger = false;
         }

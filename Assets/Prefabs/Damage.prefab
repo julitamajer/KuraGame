@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2905bccb2b71e549a50215b8018af99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chicksPowerUp: {fileID: 11400000, guid: 359018ef7a534624bbb835eb71d200c3, type: 2}
+  _chicksPowerUp: {fileID: 11400000, guid: 359018ef7a534624bbb835eb71d200c3, type: 2}
 --- !u!135 &8920014678857042639
 SphereCollider:
   m_ObjectHideFlags: 0
