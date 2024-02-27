@@ -5,30 +5,27 @@ using UnityEngine.AI;
 
 public class RandomizeSeeds : MonoBehaviour
 {
-    public GameObject objectPrefab; // The object to spawn
-    public int maxSpawnAttempts = 10;
-    public int spawnNumber;// Maximum number of attempts to find a valid spawn point
+    [SerializeField] private GameObject _objectPrefab;
+    [SerializeField] private int _maxSpawnAttempts = 10;
+    [SerializeField] private int _spawnNumber;
 
     void Start()
     {
-        // Call the method to spawn objects
-        SpawnObjectsOnNavMesh(spawnNumber); // Adjust number of objects to spawn as needed
+        SpawnObjectsOnNavMesh(_spawnNumber);
     }
 
     void SpawnObjectsOnNavMesh(int numberOfObjects)
     {
         for (int i = 0; i < numberOfObjects; i++)
         {
-            // Random position within the nav mesh area
             Vector3 randomPoint = new Vector3(
-                Random.Range(-45f, 45f), // Half of the nav mesh width
+                Random.Range(-45f, 45f),
                 0f,
-                Random.Range(-45f, 45f)  // Half of the nav mesh length
-            );
+                Random.Range(-45f, 45f)
+);
 
-            // Attempt to find a valid spawn point on the nav mesh
-            Vector3 spawnPoint = Vector3.zero; // Initialize spawnPoint
-            for (int attempt = 0; attempt < maxSpawnAttempts; attempt++)
+            Vector3 spawnPoint = Vector3.zero;
+            for (int attempt = 0; attempt < _maxSpawnAttempts; attempt++)
             {
                 if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
                 {
@@ -37,7 +34,6 @@ public class RandomizeSeeds : MonoBehaviour
                 }
                 else
                 {
-                    // If the random point is not on the nav mesh, generate a new one
                     randomPoint = new Vector3(
                         Random.Range(-45f, 45f),
                         0f,
@@ -46,9 +42,7 @@ public class RandomizeSeeds : MonoBehaviour
                 }
             }
 
-            // Instantiate the object at the valid spawn point
-            Instantiate(objectPrefab, spawnPoint, Quaternion.identity);
+            Instantiate(_objectPrefab, spawnPoint, Quaternion.identity);
         }
     }
-
 }
