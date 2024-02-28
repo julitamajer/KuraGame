@@ -10837,7 +10837,7 @@ PrefabInstance:
     - target: {fileID: 2537276554939024393, guid: 05b1136437ff0bd418440cabec108030,
         type: 3}
       propertyPath: _gap
-      value: 180
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2537276554939024393, guid: 05b1136437ff0bd418440cabec108030,
         type: 3}
