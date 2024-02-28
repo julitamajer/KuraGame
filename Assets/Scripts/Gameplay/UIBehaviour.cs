@@ -46,6 +46,8 @@ public class UIBehaviour : MonoBehaviour
     private float _elapsedTime = 0.0f;
     [SerializeField] private int score = 0;
 
+    [SerializeField] private string chickenSummary;
+
     public delegate void OnTimeChange(string state);
     public static event OnTimeChange onTimeChange;
 
@@ -184,11 +186,15 @@ public class UIBehaviour : MonoBehaviour
         _timeRemaining = duration - _elapsedTime;
         _summaryPanel.SetActive(true);
         Time.timeScale = 0;
-        _summarySeed.SetText(_seedCount.ToString("0"));
-        _summaryTimeLeft.SetText((duration - _elapsedTime).ToString("0") + "s");
+        
 
  
         collectedChickens = collected;
+
+        chickenSummary = collectedChickens.ToString("0") + " / " + maxChickens.ToString("0");
+
+        _summarySeed.SetText(chickenSummary);
+        _summaryTimeLeft.SetText((duration - _elapsedTime).ToString("0") + "s");
 
         score = CalculateScore();
         int stars = CalculateStars(score);
@@ -215,7 +221,7 @@ public class UIBehaviour : MonoBehaviour
                 break;
         }
 
-        PlayerPrefs.SetString("seeds", _seedCount.ToString("0"));
+        PlayerPrefs.SetString("seeds", chickenSummary);
         PlayerPrefs.SetString("time", (duration - _elapsedTime).ToString("0") + "s");
     }
 

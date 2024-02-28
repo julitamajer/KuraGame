@@ -105,6 +105,7 @@ public class PlayerController : MonoBehaviour
         GameObject body = Instantiate(_bodyPrefab);
         _bodyPartList.Add(body);
         body.transform.SetParent(_bodyParent.transform);
+        body.GetComponent<Collider>().enabled = true;
     }
 
     public void Move(InputAction.CallbackContext context)

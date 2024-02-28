@@ -6310,7 +6310,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7542865691364419312}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -10837,7 +10837,7 @@ PrefabInstance:
     - target: {fileID: 2537276554939024393, guid: 05b1136437ff0bd418440cabec108030,
         type: 3}
       propertyPath: _gap
-      value: 80
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 2537276554939024393, guid: 05b1136437ff0bd418440cabec108030,
         type: 3}
@@ -11330,7 +11330,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d3a45e6fdf729414dabede975e0e4a95, type: 2}
+  - {fileID: 2100000, guid: 8a3bcf4b51241d541b89f09fc3da6a69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12511,6 +12511,7 @@ MonoBehaviour:
   maxStars: 3
   collectedChickens: 0
   score: 0
+  chickenSummary: 
 --- !u!23 &7884198109595130802
 MeshRenderer:
   m_ObjectHideFlags: 0
