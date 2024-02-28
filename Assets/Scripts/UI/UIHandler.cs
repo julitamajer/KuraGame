@@ -23,6 +23,8 @@ public class UIHandler : MonoBehaviour
     public Button panelButton;
     public GameObject[] stars = new GameObject[4];
 
+    [SerializeField] private AudioSource _click;
+
     void Awake() 
     {
         CopyListOfLevel();
@@ -111,13 +113,16 @@ public class UIHandler : MonoBehaviour
 
     public void ExitPanel() 
     {
+        
         createdLevels[clickedLevel].clicked = false;
         infoPanel.SetActive(false);
+        _click.Play();
     }
 
     public void LoadLevel() 
     {
         SceneManager.LoadScene("Demo");
+        _click.Play();
     }
 }
 

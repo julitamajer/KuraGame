@@ -10,6 +10,13 @@ public class Clock : PickableItems
     public override void OnPickedUp(Collider other)
     {
         onPickedUpClock?.Invoke(5.0f);
+        _sound.Play();
+        StartCoroutine(DestroyAfterDelay());
+    }
+
+    private IEnumerator DestroyAfterDelay()
+    {
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 }

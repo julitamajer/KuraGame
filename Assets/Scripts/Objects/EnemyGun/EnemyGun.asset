@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   gunName: Enemy Gun
-  modelPrefab: {fileID: 5652228240270279089, guid: 7c326cec83973fd4392bc8f9ee5ae150,
+  modelPrefab: {fileID: 5652228240270279089, guid: de0a991d5f2abd9408df2a383ad8cdc2,
     type: 3}
   spawnPoint: {x: 0, y: 0, z: 0}
   spawnRotation: {x: 0, y: 0, z: 0}
   enemyDamage: 1
+  immunity: 0
+  shell: {fileID: 0}
   shootConfiguration: {fileID: 11400000, guid: 8e788d0edeb45f14b93c79010e27ffb9, type: 2}
   trailConfig: {fileID: 11400000, guid: 7c987dc557abfdd4fafc318b4712385d, type: 2}

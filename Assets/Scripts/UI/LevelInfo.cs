@@ -12,6 +12,7 @@ public class LevelInfo : MonoBehaviour
     [SerializeField] private int _seeds;
     [SerializeField] private bool _passed;
     [SerializeField] private bool _clicked;
+    [SerializeField] private AudioSource _click;
 
     private Transform _parentTransform;
     private GameObject _parentObject;
@@ -47,6 +48,8 @@ public class LevelInfo : MonoBehaviour
     {
         _clicked = true;
         _uiHandler.createdLevels[_childPosition].clicked = _clicked;
+        _click.Play();
+
     }
     
     void CreateLevel() 

@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private PlayerGunSelector _gunSelector;
 
+    [SerializeField] private Animator _animator;
+
     private void OnEnable()
     {
         Egg.onPickedEgg += GrowTail;
@@ -71,12 +73,17 @@ public class PlayerController : MonoBehaviour
 
         if (_isWalking)
         {
+            _animator.SetBool("isWalking", true);
             _positionHistory.Insert(0, transform.position);
 
             if (_positionHistory.Count > maxHistoryCount)
             {
                 _positionHistory.RemoveRange(maxHistoryCount, _positionHistory.Count - maxHistoryCount);
             }
+        }
+        else
+        {
+            _animator.SetBool("isWalking", false);
         }
 
         int index = 1;
@@ -140,7 +147,7 @@ public class PlayerController : MonoBehaviour
     private void EndGame()
     {
         Debug.Log("Game Over");
-        onPlayerDead?.Invoke("You stepped your chicks!");
+        onPlayerDead?.Invoke("You stepped on your chicks!");
     }
 
     private void OnDisable()

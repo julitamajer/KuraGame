@@ -25,6 +25,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float _sightRange, _attackRange;
     [SerializeField] private bool _playerInSightRange, _playerInAttackRange;
 
+    [SerializeField] private Animator _animator;
+
     private void Awake()
     {
         _player = GameObject.Find("Player").transform;
@@ -36,21 +38,31 @@ public class EnemyAI : MonoBehaviour
         _playerInSightRange = Physics.CheckSphere(transform.position, _sightRange, _whatIsPlayer);
         _playerInAttackRange = Physics.CheckSphere(transform.position, _attackRange, _whatIsPlayer);
 
-        if (!_playerInSightRange && !_playerInAttackRange) Patrolling();
+        if (!_playerInSightRange && !_playerInAttackRange)
+        {
+            Patrolling();
+            _animator.SetBool("isWalking", true); 
+        }
+        else
+        {
+            _animator.SetBool("isWalking", false);
+        }
+
         if (_playerInSightRange && !_playerInAttackRange) ChasePlayer();
         if (_playerInSightRange && _playerInAttackRange) AttackPlayer();
     }
 
     private void Patrolling()
     {
-        if (!_walkPointSet) SearchWalkPoint();
+        if (!_walkPointSet)
+            SearchWalkPoint();
 
         if (_walkPointSet)
             _agent.SetDestination(_walkPoint);
 
         Vector3 distanceToWalkPoint = transform.position - _walkPoint;
 
-        if (distanceToWalkPoint.magnitude <1f)
+        if (distanceToWalkPoint.magnitude < 1f)
             _walkPointSet = false;
     }
 
@@ -58,9 +70,9 @@ public class EnemyAI : MonoBehaviour
     {
         float randomZ = UnityEngine.Random.Range(-_walkPointRange, _walkPointRange);
         float randomX = UnityEngine.Random.Range(-_walkPointRange, _walkPointRange);
-        _walkPoint = new Vector3(transform.position.x + randomX, transform.position.y,  transform.position.z + randomZ);
+        _walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
-        if(Physics.Raycast(_walkPoint, -transform.up, 2f, _whatIsGround))
+        if (Physics.Raycast(_walkPoint, -transform.up, 2f, _whatIsGround))
         {
             _walkPointSet = true;
         }

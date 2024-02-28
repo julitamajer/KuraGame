@@ -27,6 +27,13 @@ public class CollectPowerUp : PickableItems
                 break;
         }
 
+        _sound.Play();
+        StartCoroutine(DestroyAfterDelay());
+    }
+
+    private IEnumerator DestroyAfterDelay()
+    {
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 }

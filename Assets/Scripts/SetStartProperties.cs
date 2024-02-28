@@ -63,7 +63,6 @@ public class SetStartProperties : MonoBehaviour
     void Check_eggsParent()
     {
         _isParentEmpty = (_eggsParent.transform.childCount == 0);
-        Debug.Log("Is Eggs Parent Empty: " + _isParentEmpty);
     }
 
     private void OnTriggerEnter(Collider other)

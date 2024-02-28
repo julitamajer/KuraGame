@@ -24,6 +24,13 @@ public class WeaponPowerUp : PickableItems
     {
         PlayerGunSelector gunSelector = other.GetComponent<PlayerGunSelector>();
         gunSelector.PickUpGun(selectedGun);
+        _sound.Play();
+        StartCoroutine(DestroyAfterDelay());
+    }
+
+    private IEnumerator DestroyAfterDelay()
+    {
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 }

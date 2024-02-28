@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4997425373726561902}
   - component: {fileID: 1281122418320819056}
   - component: {fileID: 6295493467917608151}
+  - component: {fileID: 8483867049369698352}
   m_Layer: 0
   m_Name: ChicksPowerUp
   m_TagString: Untagged
@@ -119,12 +120,110 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2483a3af5faf7948a774e0e1eeddd46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sound: {fileID: 8483867049369698352}
+  _meshRenderer: {fileID: 5373491342128030080}
   _powerUpType: 0
   _powerUps:
   - {fileID: 7159308623635789034, guid: ac2e7e886c2af7c4bb68153b8b6018eb, type: 3}
   - {fileID: 7159308623635789034, guid: 66010cb762fd0f54c8afab3922518872, type: 3}
   - {fileID: 7159308623635789034, guid: aa34a19c75d8af14e974c7b5b0002196, type: 3}
   - {fileID: 7159308623635789034, guid: dde26ef9c61262746b7237b9af2a29d1, type: 3}
+--- !u!82 &8483867049369698352
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8853067011761810832}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 78419f98379502c4dbfb2774bc94e7c1, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &6724978454146530564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -200,6 +299,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 39fb25e79d3afa04cb474b34c080b76d,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 39fb25e79d3afa04cb474b34c080b76d,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7bc8ec7af97d97a449b4db695cbe3b05, type: 2}
@@ -213,6 +317,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39fb25e79d3afa04cb474b34c080b76d, type: 3}
+--- !u!23 &5373491342128030080 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 39fb25e79d3afa04cb474b34c080b76d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6724978454146530564}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6546357247250946799 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 39fb25e79d3afa04cb474b34c080b76d,

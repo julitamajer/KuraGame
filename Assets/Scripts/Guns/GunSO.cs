@@ -28,6 +28,7 @@ public class GunSO : ScriptableObject
     private ParticleSystem _shootSystem;
     private ObjectPool<TrailRenderer> _trailPool;
     private int _countShots;
+    private AudioSource _shootSound;
 
     public delegate void OnMaxHealthDecrease();
     public static event OnMaxHealthDecrease onMaxHealthDecrease;
@@ -45,6 +46,7 @@ public class GunSO : ScriptableObject
 
         _shootSystem = _model.GetComponentInChildren<ParticleSystem>();
         shell = _model.GetComponentInChildren<ParticleSystem>();
+        _shootSound = _model.GetComponentInChildren<AudioSource>();
     }
 
     public void Shoot()
@@ -53,6 +55,7 @@ public class GunSO : ScriptableObject
         {
             _lastShootTime = Time.time;
             shell.Emit(1);
+            _shootSound.Play();
             _shootSystem.Play();
             Vector3 shootDirection = _shootSystem.transform.forward +
                 new Vector3(UnityEngine.Random.Range(-shootConfiguration.spread.x, shootConfiguration.spread.x),
