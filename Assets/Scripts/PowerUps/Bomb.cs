@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
-    [SerializeField] float _delay = 2f;
-    [SerializeField] float _radius = 5f;
+    [SerializeField] private float _delay = 2f;
+    [SerializeField] private float _radius = 5f;
+    [SerializeField] private AudioSource _boom;
 
     private float _countdown;
     private bool _hasExploded;
@@ -34,6 +35,7 @@ public class Bomb : MonoBehaviour
         GameObject boom = Instantiate(_explosionEffect, transform.position, transform.rotation);
         boom.transform.SetParent(gameObject.transform);
         Collider[] colliders = Physics.OverlapSphere(transform.position, _radius);
+        _boom.Play();
 
         foreach (Collider collider in colliders)
         {
