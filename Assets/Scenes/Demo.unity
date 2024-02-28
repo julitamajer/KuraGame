@@ -896,7 +896,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 5000
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 3991.2756, y: 1.8058762e+28, z: 873190.3, w: 4.4376848e+27}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -3294,7 +3294,7 @@ Transform:
   m_GameObject: {fileID: 1795297656}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3457,7 +3457,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3548,7 +3548,7 @@ Transform:
   m_GameObject: {fileID: 1991158797}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.295425, y: -5.6728153, z: -6.0735197}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5087,7 +5087,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -435, y: 90}
-  m_SizeDelta: {x: 300, y: 300}
+  m_SizeDelta: {x: 386.3907, y: 386.3907}
   m_Pivot: {x: 1, y: 0}
 --- !u!33 &1162285563381778426
 MeshFilter:
@@ -6310,7 +6310,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7542865691364419312}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -8981,8 +8981,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -435, y: 90}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: -88.997, y: 90}
+  m_SizeDelta: {x: 386.3907, y: 386.3907}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &4937288126628964258
 CanvasRenderer:
@@ -10045,7 +10045,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -435, y: 90}
-  m_SizeDelta: {x: 300, y: 300}
+  m_SizeDelta: {x: 386.3907, y: 386.3907}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &5902396146221912330
 MonoBehaviour:
@@ -10837,7 +10837,7 @@ PrefabInstance:
     - target: {fileID: 2537276554939024393, guid: 05b1136437ff0bd418440cabec108030,
         type: 3}
       propertyPath: _gap
-      value: 140
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 2537276554939024393, guid: 05b1136437ff0bd418440cabec108030,
         type: 3}
@@ -11513,8 +11513,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -25, y: 44}
-  m_SizeDelta: {x: 400, y: 400}
+  m_AnchoredPosition: {x: -475.39, y: 43.496}
+  m_SizeDelta: {x: 475.6174, y: 479.3982}
   m_Pivot: {x: 1, y: 0}
 --- !u!23 &7400942816511377038
 MeshRenderer:
@@ -14107,9 +14107,7 @@ SceneRoots:
   - {fileID: 8519671459255123936}
   - {fileID: 543450651953288745}
   - {fileID: 543450652674565676}
-  - {fileID: 543450653094118634}
   - {fileID: 543450653202613932}
-  - {fileID: 1991158799}
   - {fileID: 490083619}
   - {fileID: 565687865}
   - {fileID: 376617149}
@@ -14120,3 +14118,5 @@ SceneRoots:
   - {fileID: 384153118}
   - {fileID: 1851869057}
   - {fileID: 1587584595}
+  - {fileID: 1991158799}
+  - {fileID: 543450653094118634}

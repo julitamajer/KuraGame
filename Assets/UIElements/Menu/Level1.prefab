@@ -68,7 +68,8 @@ MonoBehaviour:
   m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0108a2186870a5b488332aebafc8b779, type: 2}
-  m_sharedMaterial: {fileID: 3740507047849145799, guid: 0108a2186870a5b488332aebafc8b779, type: 2}
+  m_sharedMaterial: {fileID: 3740507047849145799, guid: 0108a2186870a5b488332aebafc8b779,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -92,8 +93,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 250
-  m_fontSizeBase: 250
+  m_fontSize: 187.13
+  m_fontSizeBase: 187.13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -392,8 +393,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02cfa94118430e9428e3ad03de457f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  number: 
-  time: 0
-  stars: 0
-  passed: 0
-  clicked: 0
+  _number: 0
+  _time: 0
+  _stars: 0
+  _seeds: 0
+  _passed: 0
+  _clicked: 0
+  _click: {fileID: 0}
