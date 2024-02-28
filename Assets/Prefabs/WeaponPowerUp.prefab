@@ -119,9 +119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e31a7cbbfbef704f9e511a9b5457214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunsSO:
-  - {fileID: 11400000, guid: 820ad62a3a962dd469443299a2650327, type: 2}
+  _gunsSO:
   - {fileID: 11400000, guid: 1395b411d81875f4988e394edd44fa92, type: 2}
+  - {fileID: 11400000, guid: 820ad62a3a962dd469443299a2650327, type: 2}
+  - {fileID: 11400000, guid: 898bfcac5c85d5449bb63c2d39112a89, type: 2}
 --- !u!1001 &8728623777383336481
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -18,10 +18,8 @@ public class UIBehaviour : MonoBehaviour
 
     [Header("Time")]
     public Slider slider;
-    [SerializeField] float duration = 120.0f; 
     private float _targetValue;
     private float _startValue;
-    private float _elapsedTime = 0.0f;
     private float _timeRemaining;
 
     [Header("End Game Panel")]
@@ -38,17 +36,41 @@ public class UIBehaviour : MonoBehaviour
     [SerializeField] private PlayerGunSelector _playerGunSelector;
     private GunType type;
 
+    [SerializeField] private int maxChickens;
+    [SerializeField] float duration = 120.0f;
+
+    [SerializeField] private int maxScore = 0; 
+    [SerializeField] private int maxStars = 3;
+
+    [SerializeField] private int collectedChickens = 0;
+    private float _elapsedTime = 0.0f;
+    [SerializeField] private int score = 0;
+
     private void OnEnable()
     {
         Seed.onPickedUpSeed += AddSeeds;
         PlayerHP.onPlayerDead += PlayerDeath;
         PlayerController.onPlayerDead += PlayerDeath;
         SetStartProperties.onPlayerWin += PlayerWin;
+        SetStartProperties.onGameStart += SetMaxChicks;
         Clock.onPickedUpClock += AddTime;
+    }
+
+    private void SetMaxChicks(int max)
+    {
+        maxChickens = max;
+    }
+
+    void CalculateMaxScore()
+    {
+        float chickenScore = maxChickens * 500f / maxChickens; // Maximum score for chickens is 500 per chicken
+        float timeScore = duration / duration * 500f; // Maximum score for time is 500
+        maxScore = Mathf.RoundToInt(chickenScore + timeScore);
     }
 
     private void Start()
     {
+        CalculateMaxScore();
         slider.value = 100f;
         _targetValue = 0f;
         _startValue = slider.value;
@@ -129,7 +151,7 @@ public class UIBehaviour : MonoBehaviour
         _textEndGame.SetText(text);
     }
 
-    private void PlayerWin()
+    private void PlayerWin(int collected)
     {
         _timeRemaining = duration - _elapsedTime;
         _summaryPanel.SetActive(true);
@@ -137,7 +159,13 @@ public class UIBehaviour : MonoBehaviour
         _summarySeed.SetText(_seedCount.ToString("0"));
         _summaryTimeLeft.SetText((duration - _elapsedTime).ToString("0") + "s");
 
-        int stars = CalculateStars();
+ 
+        collectedChickens = collected;
+
+        score = CalculateScore();
+        int stars = CalculateStars(score);
+
+        Debug.Log("Stars: " + stars);
 
         switch (stars)
         {
@@ -162,6 +190,24 @@ public class UIBehaviour : MonoBehaviour
         PlayerPrefs.SetString("seeds", _seedCount.ToString("0"));
         PlayerPrefs.SetString("time", (duration - _elapsedTime).ToString("0") + "s");
     }
+
+    int CalculateScore()
+    {
+        float chickenScore = (float)collectedChickens / maxChickens * 500f; // Maximum score for chickens is 500 per chicken
+        float timeScore = (duration - _elapsedTime) / duration * 500f; // Maximum score for time is 500
+        chickenScore = Mathf.Max(chickenScore, 0f);
+        timeScore = Mathf.Max(timeScore, 0f);
+        return Mathf.RoundToInt(chickenScore + timeScore);
+    }
+
+    int CalculateStars(int score)
+    {
+        float percent = (float)score / maxScore;
+        int starsEarned = Mathf.RoundToInt(percent * maxStars);
+        starsEarned = Mathf.Clamp(starsEarned, 0, maxStars);
+        return starsEarned;
+    }
+
 
     private void AddSeeds()
     {

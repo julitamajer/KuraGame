@@ -8,18 +8,29 @@ public class SetStartProperties : MonoBehaviour
     [SerializeField] private GameObject _eggsParent;
     [SerializeField] private GameObject _doors;
     [SerializeField] private UIBehaviour _uIBehaviour;
+    [SerializeField] private GameObject _bodyParts;
+
+    private int _maxChicks;
+    private int _collectedChicks;
+
+    private bool _firstLeft;
 
     private Vector3 _doorsPosition;
     private bool _doorsOnTrigger;
     private bool _isParentEmpty;
 
-    public delegate void OnPlayerWin();
+    public delegate void OnPlayerWin(int collected);
     public static event OnPlayerWin onPlayerWin;
+
+    public delegate void OnGameStart(int max);
+    public static event OnGameStart onGameStart;
 
     void Awake()
     {
         _doorsPosition = _doors.transform.position;
         Time.timeScale = 1;
+        _maxChicks = CountChildren(_eggsParent);
+        onGameStart?.Invoke(_maxChicks);
     }
 
     void Start() 
@@ -42,8 +53,10 @@ public class SetStartProperties : MonoBehaviour
 
     void EndGame()
     {
-        if (_isParentEmpty && _doorsOnTrigger) {
-            onPlayerWin?.Invoke();
+        if (_firstLeft && _doorsOnTrigger) 
+        {
+            _collectedChicks = CountChildren(_bodyParts);
+            onPlayerWin?.Invoke(_collectedChicks);
         }
     }
 
@@ -55,7 +68,7 @@ public class SetStartProperties : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && _firstLeft)
         {
             _doorsOnTrigger = true;
         }
@@ -65,7 +78,17 @@ public class SetStartProperties : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            _firstLeft = true;
             _doorsOnTrigger = false;
         }
+    }
+
+    private int CountChildren(GameObject obj)
+    {
+        int count = 0;
+        count = obj.transform.childCount;
+
+
+        return count;
     }
 }
