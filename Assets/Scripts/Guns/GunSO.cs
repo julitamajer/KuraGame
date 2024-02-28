@@ -17,6 +17,7 @@ public class GunSO : ScriptableObject
     public Vector3 spawnRotation;
     public int enemyDamage = 1;
     public bool immunity;
+    public ParticleSystem shell;
 
     public ShootConfigurationSO shootConfiguration;
     public TrailConfigSO trailConfig;
@@ -43,14 +44,15 @@ public class GunSO : ScriptableObject
         _model.transform.localRotation = Quaternion.Euler(spawnRotation);
 
         _shootSystem = _model.GetComponentInChildren<ParticleSystem>();
+        shell = _model.GetComponentInChildren<ParticleSystem>();
     }
 
     public void Shoot()
     {
         if (Time.time > shootConfiguration.fireRate + _lastShootTime)
         {
-            _lastShootTime = Time.time; 
-
+            _lastShootTime = Time.time;
+            shell.Emit(1);
             _shootSystem.Play();
             Vector3 shootDirection = _shootSystem.transform.forward +
                 new Vector3(UnityEngine.Random.Range(-shootConfiguration.spread.x, shootConfiguration.spread.x),

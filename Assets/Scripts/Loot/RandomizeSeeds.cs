@@ -9,7 +9,7 @@ public class RandomizeSeeds : MonoBehaviour
     [SerializeField] private int _maxSpawnAttempts = 10;
     [SerializeField] private int _spawnNumber;
 
-    void Start()
+    void Awake()
     {
         SpawnObjectsOnNavMesh(_spawnNumber);
     }
@@ -21,8 +21,7 @@ public class RandomizeSeeds : MonoBehaviour
             Vector3 randomPoint = new Vector3(
                 Random.Range(-45f, 45f),
                 0f,
-                Random.Range(-45f, 45f)
-);
+                Random.Range(-45f, 45f));
 
             Vector3 spawnPoint = Vector3.zero;
             for (int attempt = 0; attempt < _maxSpawnAttempts; attempt++)
@@ -42,7 +41,7 @@ public class RandomizeSeeds : MonoBehaviour
                 }
             }
 
-            Instantiate(_objectPrefab, spawnPoint, Quaternion.identity);
+            GameObject seed = Instantiate(_objectPrefab, spawnPoint, Quaternion.identity);
         }
     }
 }

@@ -46,6 +46,13 @@ public class UIBehaviour : MonoBehaviour
     private float _elapsedTime = 0.0f;
     [SerializeField] private int score = 0;
 
+    public delegate void OnTimeChange(string state);
+    public static event OnTimeChange onTimeChange;
+
+    private bool startInvoked = false;
+    private bool middleInvoked = false;
+    private bool endInvoked = false;
+
     private void OnEnable()
     {
         Seed.onPickedUpSeed += AddSeeds;
@@ -71,6 +78,7 @@ public class UIBehaviour : MonoBehaviour
     private void Start()
     {
         CalculateMaxScore();
+
         slider.value = 100f;
         _targetValue = 0f;
         _startValue = slider.value;
@@ -90,6 +98,26 @@ public class UIBehaviour : MonoBehaviour
 
         type = _playerGunSelector.activeGun.type;
         DisplayGuns();
+        OnChangeTime();
+    }
+
+    private void OnChangeTime()
+    {
+        if (slider.value >= 0.95f && !startInvoked)
+        {
+            onTimeChange?.Invoke("start");
+            startInvoked = true;
+        }
+        else if (slider.value <= 0.60f && slider.value >= 0.50f && !middleInvoked)
+        {
+            onTimeChange?.Invoke("middle");
+            middleInvoked = true;
+        }
+        else if (slider.value <= 0.30f && slider.value >= 0.20f && !endInvoked)
+        {
+            onTimeChange?.Invoke("end");
+            endInvoked = true;
+        }
     }
 
     public void PauseMenu()
@@ -251,22 +279,6 @@ public class UIBehaviour : MonoBehaviour
                 _gunsUI[2].SetActive(true);
                 break;
         }
-    }
-
-    public int CalculateStars()
-    {
-        int timeStars = 0;
-        if (_timeRemaining > 90)
-            timeStars = 3;
-        else if (_timeRemaining >= 60 && _timeRemaining <= 90)
-            timeStars = 2;
-        else if (_timeRemaining >= 30 && _timeRemaining < 60)
-            timeStars = 1;
-        else if (_timeRemaining < 30)
-            timeStars = 0;
-
-
-        return timeStars;
     }
 
     private void OnDisable()
